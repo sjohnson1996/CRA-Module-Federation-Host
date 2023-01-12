@@ -11,15 +11,21 @@ import {
 } from "@mui/material";
 
 export const App = () => {
+  
   const CustomProfile = ({ loading, data }: any) => {
-
     return (
       <Box>
         {(loading) && (
           <Skeleton width="100%" height="100px" />
         )}
         {(data) && (
-          <Box>
+          <Box 
+            style={{ 
+              display: 'flex', 
+              marginTop: '30px',
+              justifyContent: 'space-around' 
+            }}
+          >
             {data.pros.map((pro: any) => (
               <Typography>
                 {pro.name}
