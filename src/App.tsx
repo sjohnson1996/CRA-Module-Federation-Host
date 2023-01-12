@@ -11,7 +11,7 @@ import {
 } from "@mui/material";
 
 export const App = () => {
-  
+
   const CustomProfile = ({ loading, data }: any) => {
     return (
       <Box>
@@ -56,7 +56,7 @@ export const App = () => {
             // accountKey="5e887a62195cc5aef7e8ca5d"
             referralId="12345"
           >
-            <CustomProfile />
+            {/* <CustomProfile /> */}
           </TrustedProfile>
         </ErrorBoundary>
       </Box>
