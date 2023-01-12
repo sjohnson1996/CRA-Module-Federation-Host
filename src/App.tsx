@@ -1,26 +1,60 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+// host/src/App.js
+import React from "react";
+// @ts-ignore
+import ErrorBoundary from "./ErrorBoundary.tsx";
+// @ts-ignore
+const TrustedProfile = React.lazy(() => import('NextRemote/TrustedProfile'));
+import { 
+  Box,
+  Skeleton,
+  Typography 
+} from "@mui/material";
 
-function App() {
+export const App = () => {
+  const CustomProfile = ({ loading, data }: any) => {
+
+    return (
+      <Box>
+        {(loading) && (
+          <Skeleton width="100%" height="100px" />
+        )}
+        {(data) && (
+          <Box>
+            {data.pros.map((pro: any) => (
+              <Typography>
+                {pro.name}
+              </Typography>
+            ))}
+          </Box>
+        )}
+      </Box>
+    );
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Box 
+      style={{ 
+        display: 'flex', 
+        justifyContent: 'center', 
+        flexDirection: 'column' 
+      }}
+    >
+      <Box style={{ marginBottom: '30px' }}>
+        <Typography variant="h3" align="center">
+          Meet your agents!
+        </Typography>
+      </Box>
+      <Box>
+        <ErrorBoundary>
+          <TrustedProfile 
+            // accountKey="5e887a62195cc5aef7e8ca5d"
+            referralId="12345"
+          >
+            <CustomProfile />
+          </TrustedProfile>
+        </ErrorBoundary>
+      </Box>
+    </Box>
   );
 }
-
 export default App;
